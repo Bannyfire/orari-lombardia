@@ -3,50 +3,57 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Orari Lombardia</title>
 <meta name="theme-color" content="#0f2a33">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <style>
-:root{--bg:#f2f4f1;--card:#fff;--ink:#10252d;--mut:#5d7078;--line:#d9dfdc;--acc:#0f6b5c;--head:#0f2a33}
-@media(prefers-color-scheme:dark){:root{--bg:#0c171b;--card:#14252b;--ink:#e6efed;--mut:#8aa0a6;--line:#25393f;--acc:#4cc3a8;--head:#08110f}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,Segoe UI,sans-serif}
-header{background:var(--head);color:#fff;padding:14px 14px 12px;position:sticky;top:0;z-index:5}
-h1{margin:0 0 10px;font-size:19px;letter-spacing:.2px}
-.row{display:flex;gap:8px}
-input,button{font:inherit;color:inherit}
-#q{flex:1;min-width:0;padding:11px 12px;border-radius:10px;border:0;background:#fff;color:#10252d}
-.btn{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px;cursor:pointer}
-header .btn{background:#1d4450;border-color:#2c5967;color:#fff}
-main{max-width:680px;margin:0 auto;padding:10px 12px 40px}
-.item{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin:0 0 6px;cursor:pointer}
-.item small{color:var(--mut);white-space:nowrap}
-.ctl{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px;align-items:center}
-.ctl input[type=date]{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card)}
-.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:6px}
-.chip{flex:none}.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
-.dep{display:grid;grid-template-columns:58px auto 1fr;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line)}
-.t{font-variant-numeric:tabular-nums;font-weight:700;font-size:20px}
-.t.past{color:var(--mut);font-weight:500}
-.b{min-width:44px;text-align:center;padding:3px 7px;border-radius:6px;color:#fff;font-weight:700;font-size:14px}
-.d{min-width:0}.d div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.d small{color:var(--mut)}
-.msg{color:var(--mut);padding:18px 4px}
-h2{margin:8px 0 2px;font-size:20px}.sub{color:var(--mut);margin-bottom:6px}
-.tabs{margin-top:8px}.tab{flex:1}.tab.on{background:#4cc3a8!important;border-color:#4cc3a8!important;color:#06231c!important;font-weight:700}
-.item .b{display:inline-block;margin-right:8px}
-.stp{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;background:none;border:0;border-left:4px solid var(--c);margin-left:8px;padding:10px 12px;position:relative;cursor:pointer}
-.stp:before{content:"";position:absolute;left:-9px;top:50%;width:10px;height:10px;border-radius:50%;background:var(--bg);border:3px solid var(--c);transform:translateY(-50%)}
-.stp small{color:var(--mut)}
-footer{color:var(--mut);font-size:12px;padding:0 12px 24px;max-width:680px;margin:auto}
+:root{--bg:#eef1f6;--card:#fff;--ink:#0e1b33;--mut:#5b6880;--line:#dce2ec;--acc:#1450c8;--head:#0b2a66;--sig:#ffd60a;--nx:#fff8d6;--fd:"Barlow Condensed","Arial Narrow",system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0a1224;--card:#111d36;--ink:#eaf0fb;--mut:#8e9bb5;--line:#22304d;--acc:#6ea2ff;--head:#070e1e;--nx:#2a2a12}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:var(--head);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 14px 14px;position:sticky;top:0;z-index:5;border-bottom:4px solid var(--sig)}
+h1{margin:0 0 10px;font:700 26px/1 var(--fd);letter-spacing:.4px}
+.row{display:flex;gap:8px}input,button{font:inherit;color:inherit}
+#q{flex:1;min-width:0;padding:12px 14px;border-radius:12px;border:0;background:#fff;color:#0e1b33;font-size:17px}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:9px 13px;cursor:pointer}
+header .btn{background:#17397f;border-color:#2a4f9c;color:#fff}
+main{max-width:680px;margin:0 auto;padding:12px 12px 96px}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 8px;cursor:pointer;font-size:17px}
+.item span{min-width:0}.item small{color:var(--mut);white-space:nowrap;font-size:13px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:10px;vertical-align:1px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px;align-items:center}
+.ctl input[type=date]{padding:9px 10px;border-radius:12px;border:1px solid var(--line);background:var(--card)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:8px;scrollbar-width:none}
+.chip{flex:none;white-space:nowrap}.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.dep{display:grid;grid-template-columns:78px auto 1fr;gap:12px;align-items:center;padding:10px 10px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:6px}
+.dep.next{background:var(--nx);border-left:6px solid var(--sig)}
+.dep.past{opacity:.45}
+.t b{display:block;font:700 30px/1 var(--fd);font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.t i{display:block;font-style:normal;font-size:12px;color:var(--mut);margin-top:2px;min-height:15px}
+.dep.next .t i{color:var(--ink);font-weight:700}
+.b{min-width:46px;text-align:center;padding:4px 8px;border-radius:8px;color:#fff;font:700 18px/1.1 var(--fd)}
+.d{min-width:0}.d div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.d small{color:var(--mut)}
+.msg{color:var(--mut);padding:22px 4px;text-align:center}
+h2{margin:12px 0 2px;font:700 30px/1.05 var(--fd)}.sub{color:var(--mut);margin-bottom:6px}
+.stp{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;background:none;border:0;border-left:5px solid var(--c);margin-left:9px;padding:11px 12px;position:relative;cursor:pointer;font-size:16px}
+.stp:before{content:"";position:absolute;left:-10px;top:50%;width:11px;height:11px;border-radius:50%;background:var(--bg);border:3px solid var(--c);transform:translateY(-50%)}
+.stp small{color:var(--mut)}.item .b{display:inline-block;margin-right:8px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:6}
+.tab{flex:1;border:0;background:none;padding:10px 0 9px;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;cursor:pointer}
+.tab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tab.on{color:var(--acc);font-weight:700}
+footer{color:var(--mut);font-size:12px;padding:0 14px 110px;max-width:680px;margin:auto}
 </style></head><body>
 <header><h1>Orari Lombardia</h1>
-<div class="row"><input id="q" type="search" placeholder="Cerca una fermata…" autocomplete="off"><button class="btn" id="geo">Vicino a me</button></div>
-<div class="row tabs"><button class="btn tab on" id="tS">Fermate</button><button class="btn tab" id="tL">Linee</button></div></header>
+<div class="row"><input id="q" type="search" placeholder="Cerca una fermata…" autocomplete="off"><button class="btn" id="geo">Vicino a me</button></div></header>
 <main id="m"></main>
+<nav><button class="tab on" id="tS"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.700-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>Fermate</button><button class="tab" id="tL"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg>Linee</button></nav>
 <footer>Dati GTFS: Regione Lombardia (Trenord), Agenzia TPL Milano-Monza-Lodi-Pavia, ATM Milano, Movibus, Airpullman. Orari programmati, non in tempo reale.</footer>
 <script>
 const $=s=>document.querySelector(s),M=$("#m");
 let IDX,OPS,cache={},cur=null;
 const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const oc=i=>({atm:"#e8730c",trenord:"#0f7a3e",movibus:"#1f6fb0",airpullman:"#7b5bb8"})[OPS[i][0]]||"#888";
 const TC={0:"#e8730c",1:"#555",2:"#0f6b5c",3:"#1f5f8b",11:"#1f5f8b"},MC={M1:"#e30613",M2:"#00a651",M3:"#f2b705",M4:"#0057b8",M5:"#8a5ba3"};
 const col=r=>r[3]?"#"+r[3]:(MC[r[0]]||TC[r[2]]||"#1f5f8b");
 const hm=n=>String(Math.floor(n/60)%24).padStart(2,"0")+":"+String(n%60).padStart(2,"0");
@@ -57,7 +64,7 @@ async function init(){
  IDX.forEach(s=>s.n=norm(s[0]));M.innerHTML='<p class="msg">Scrivi il nome di una fermata o una stazione, oppure usa “Vicino a me”.</p>'}
  catch(e){M.innerHTML='<p class="msg">Dati non caricati. Apri il sito da GitHub Pages o da un server locale, non da file.</p>'}}
 function list(a){M.innerHTML=a.length?"":'<p class="msg">Nessuna fermata trovata.</p>';
- a.forEach(s=>{const b=document.createElement("button");b.className="item";b.innerHTML=`<span>${esc(s[0])}</span><small>${esc(OPS[s[1]][1])}</small>`;b.onclick=()=>open(s);M.appendChild(b)})}
+ a.forEach(s=>{const b=document.createElement("button");b.className="item";b.innerHTML=`<span><i class="dot" style="background:${oc(s[1])}"></i>${esc(s[0])}</span><small>${esc(OPS[s[1]][1])}</small>`;b.onclick=()=>open(s);M.appendChild(b)})}
 $("#q").oninput=e=>{const t=norm(e.target.value.trim());if(t.length<2){if(!t)M.innerHTML="";return}
  const w=t.split(/\s+/);list(IDX.filter(s=>w.every(x=>s.n.includes(x))).sort((a,b)=>(b.n.startsWith(t))-(a.n.startsWith(t))||a.n.length-b.n.length).slice(0,40))};
 $("#geo").onclick=()=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>{const{latitude:y,longitude:x}=p.coords,k=Math.cos(y*Math.PI/180);
@@ -73,7 +80,7 @@ function deps(){const{D,s,day}=cur,[y,mo,d]=day.split("-").map(Number),[by,bm,bd
    if(sv[di]==="1")out.push([a,p[0],dest,D.S[sid][0],k==3?t[j+2]:""]);
    if(di>0&&sv[di-1]==="1"&&a>=1440)out.push([a-1440,p[0],dest,D.S[sid][0],k==3?t[j+2]:""])}}
  return out.sort((a,b)=>a[0]-b[0])}
-function draw(){const{D,s}=cur,all=deps();let h=`<button class="btn" onclick="back()">← Indietro</button><h2>${esc(s[0])}</h2><div class="sub">${esc(OPS[s[1]][1])}</div>`;
+function draw(){const{D,s}=cur,all=deps();let h=`<button class="btn" onclick="back()">← Indietro</button><h2>${esc(s[0])}</h2><div class="sub"><i class="dot" style="background:${oc(s[1])}"></i>${esc(OPS[s[1]][1])}</div>`;
  h+=`<div class="ctl"><input type="date" value="${cur.day}" onchange="cur.day=this.value||cur.day;draw()"><button class="btn" onclick="cur.all=!cur.all;draw()">${cur.all?"Solo prossime":"Tutto il giorno"}</button></div>`;
  if(!all){M.innerHTML=h+'<p class="msg">Per questa data non ci sono orari nei dati caricati.</p>';return}
  const rs=[...new Set(all.map(x=>x[1]))].sort((a,b)=>D.R[a][0].localeCompare(D.R[b][0],"it",{numeric:true}));
@@ -81,7 +88,8 @@ function draw(){const{D,s}=cur,all=deps();let h=`<button class="btn" onclick="ba
  const now=new Date(),isT=cur.day===iso(now),nm=now.getHours()*60+now.getMinutes(),multi=s[4].length>1;
  let v=all.filter(x=>(cur.line===null||x[1]===cur.line)&&(cur.all||!isT||x[0]>=nm-1));
  if(!cur.all)v=v.slice(0,80);
- h+=v.length?v.map(x=>{const r=D.R[x[1]];return`<div class="dep"><div class="t ${isT&&x[0]<nm?"past":""}">${hm(x[0])}</div><div class="b" style="background:${col(r)}">${esc(r[0])}</div><div class="d"><div>${esc(x[2])}</div>${multi||x[4]?`<small>${[multi?x[3]:"",x[4]?"n. "+x[4]:""].filter(Boolean).join(" · ")}</small>`:""}</div></div>`}).join(""):'<p class="msg">Nessuna partenza. Prova “Tutto il giorno” o un’altra data.</p>';
+ const ni=isT?v.findIndex(x=>x[0]>=nm):-1;
+ h+=v.length?v.map((x,j)=>{const r=D.R[x[1]],dm=x[0]-nm,cd=isT&&dm>=0?(dm<1?"ora":dm<60?"tra "+dm+" min":""):"";return`<div class="dep ${isT&&x[0]<nm?"past":""} ${j===ni?"next":""}"><div class="t"><b>${hm(x[0])}</b><i>${cd}</i></div><div class="b" style="background:${col(r)}">${esc(r[0])}</div><div class="d"><div>${esc(x[2])}</div>${multi||x[4]?`<small>${[multi?x[3]:"",x[4]?"n. "+x[4]:""].filter(Boolean).join(" · ")}</small>`:""}</div></div>`}).join(""):'<p class="msg">Nessuna partenza. Prova “Tutto il giorno” o un’altra data.</p>';
  M.innerHTML=h;window.scrollTo(0,0)}
 function back(){M.innerHTML="";$("#q").dispatchEvent(new Event("input"));cur=null}
 
@@ -89,7 +97,7 @@ let tab=0;
 function setTab(m){tab=m;$("#tS").classList.toggle("on",!m);$("#tL").classList.toggle("on",!!m);$("#q").parentNode.style.display=m?"none":"flex"}
 $("#tS").onclick=()=>{setTab(0);cur=null;M.innerHTML="";$("#q").dispatchEvent(new Event("input"))};
 $("#tL").onclick=()=>{setTab(1);cur=null;lines()};
-function lines(){M.innerHTML='<div class="sub">Scegli un operatore</div>'+OPS.map((o,i)=>`<button class="item" onclick="opLines(${i})"><span>${esc(o[1])}</span><small>Linee ›</small></button>`).join("")}
+function lines(){M.innerHTML='<div class="sub">Scegli un operatore</div>'+OPS.map((o,i)=>`<button class="item" onclick="opLines(${i})"><span><i class="dot" style="background:${oc(i)}"></i>${esc(o[1])}</span><small>Linee ›</small></button>`).join("")}
 async function opLines(i){M.innerHTML='<p class="msg">Carico le linee…</p>';const D=await load(i);
  const rs=[...new Set(D.P.map(p=>p[0]))].sort((a,b)=>D.R[a][0].localeCompare(D.R[b][0],"it",{numeric:true}));
  M.innerHTML=`<button class="btn" onclick="lines()">← Operatori</button><h2>${esc(OPS[i][1])}</h2><div class="sub">${rs.length} linee</div>`+rs.map(r=>{const R=D.R[r];return`<button class="item" onclick="lineView(${i},${r})"><span><span class="b" style="background:${col(R)}">${esc(R[0])}</span>${R[1]&&R[1]!==R[0]?esc(R[1]):""}</span></button>`}).join("");window.scrollTo(0,0)}
