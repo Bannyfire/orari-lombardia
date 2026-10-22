@@ -37,6 +37,7 @@ main{max-width:680px;margin:0 auto;padding:12px 12px 96px}
 h2{margin:12px 0 2px;font:700 30px/1.05 var(--fd)}.sub{color:var(--mut);margin-bottom:6px}
 .stp{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:left;background:none;border:0;border-left:5px solid var(--c);margin-left:9px;padding:11px 12px;position:relative;cursor:pointer;font-size:16px}
 .stp:before{content:"";position:absolute;left:-10px;top:50%;width:11px;height:11px;border-radius:50%;background:var(--bg);border:3px solid var(--c);transform:translateY(-50%)}
+.dep{cursor:pointer}.stp.gone{opacity:.45}.stp.here{background:var(--nx)}.stp small b{font:700 20px/1 var(--fd);color:var(--ink)}
 .stp small{color:var(--mut)}.item .b{display:inline-block;margin-right:8px}
 nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:6}
 .tab{flex:1;border:0;background:none;padding:10px 0 9px;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;cursor:pointer}
@@ -77,8 +78,8 @@ function deps(){const{D,s,day}=cur,[y,mo,d]=day.split("-").map(Number),[by,bm,bd
  if(di<0||di>=D.V[0].length)return null;
  for(const sid of s[4])for(const[pi,i]of D.byStop[sid]||[]){const p=D.P[pi],t=D.T[pi],off=p[3][i],dest=p[1]||D.S[p[2][p[2].length-1]][1];
   for(let j=0;j<t.length;j+=k){const sv=D.V[t[j+1]],a=t[j]+off;
-   if(sv[di]==="1")out.push([a,p[0],dest,D.S[sid][0],k==3?t[j+2]:""]);
-   if(di>0&&sv[di-1]==="1"&&a>=1440)out.push([a-1440,p[0],dest,D.S[sid][0],k==3?t[j+2]:""])}}
+   if(sv[di]==="1")out.push([a,p[0],dest,D.S[sid][0],k==3?t[j+2]:"",pi,t[j],i]);
+   if(di>0&&sv[di-1]==="1"&&a>=1440)out.push([a-1440,p[0],dest,D.S[sid][0],k==3?t[j+2]:"",pi,t[j]-1440,i])}}
  return out.sort((a,b)=>a[0]-b[0])}
 function draw(){const{D,s}=cur,all=deps();let h=`<button class="btn" onclick="back()">← Indietro</button><h2>${esc(s[0])}</h2><div class="sub"><i class="dot" style="background:${oc(s[1])}"></i>${esc(OPS[s[1]][1])}</div>`;
  h+=`<div class="ctl"><input type="date" value="${cur.day}" onchange="cur.day=this.value||cur.day;draw()"><button class="btn" onclick="cur.all=!cur.all;draw()">${cur.all?"Solo prossime":"Tutto il giorno"}</button></div>`;
@@ -88,8 +89,8 @@ function draw(){const{D,s}=cur,all=deps();let h=`<button class="btn" onclick="ba
  const now=new Date(),isT=cur.day===iso(now),nm=now.getHours()*60+now.getMinutes(),multi=s[4].length>1;
  let v=all.filter(x=>(cur.line===null||x[1]===cur.line)&&(cur.all||!isT||x[0]>=nm-1));
  if(!cur.all)v=v.slice(0,80);
- const ni=isT?v.findIndex(x=>x[0]>=nm):-1;
- h+=v.length?v.map((x,j)=>{const r=D.R[x[1]],dm=x[0]-nm,cd=isT&&dm>=0?(dm<1?"ora":dm<60?"tra "+dm+" min":""):"";return`<div class="dep ${isT&&x[0]<nm?"past":""} ${j===ni?"next":""}"><div class="t"><b>${hm(x[0])}</b><i>${cd}</i></div><div class="b" style="background:${col(r)}">${esc(r[0])}</div><div class="d"><div>${esc(x[2])}</div>${multi||x[4]?`<small>${[multi?x[3]:"",x[4]?"n. "+x[4]:""].filter(Boolean).join(" · ")}</small>`:""}</div></div>`}).join(""):'<p class="msg">Nessuna partenza. Prova “Tutto il giorno” o un’altra data.</p>';
+ const ni=isT?v.findIndex(x=>x[0]>=nm):-1; cur.v=v;
+ h+=v.length?v.map((x,j)=>{const r=D.R[x[1]],dm=x[0]-nm,cd=isT&&dm>=0?(dm<1?"ora":dm<60?"tra "+dm+" min":""):"";return`<div class="dep ${isT&&x[0]<nm?"past":""} ${j===ni?"next":""}" onclick="trip(${j})"><div class="t"><b>${hm(x[0])}</b><i>${cd}</i></div><div class="b" style="background:${col(r)}">${esc(r[0])}</div><div class="d"><div>${esc(x[2])}</div>${multi||x[4]?`<small>${[multi?x[3]:"",x[4]?"n. "+x[4]:""].filter(Boolean).join(" · ")}</small>`:""}</div></div>`}).join(""):'<p class="msg">Nessuna partenza. Prova “Tutto il giorno” o un’altra data.</p>';
  M.innerHTML=h;window.scrollTo(0,0)}
 function back(){M.innerHTML="";$("#q").dispatchEvent(new Event("input"));cur=null}
 
@@ -108,6 +109,9 @@ function lineView(i,r,vi=0){const D=cache[OPS[i][0]],R=D.R[r],g={};
  M.innerHTML=`<button class="btn" onclick="opLines(${i})">← ${esc(OPS[i][1])}</button><h2><span class="b" style="background:${c};display:inline-block;margin-right:8px">${esc(R[0])}</span>${R[1]&&R[1]!==R[0]?esc(R[1]):""}</h2><div class="sub">${p[2].length} fermate · tocca una fermata per gli orari</div>`+
  (v.length>1?'<div class="chips">'+v.slice(0,10).map((x,j)=>`<button class="btn chip ${x===sel?"on":""}" onclick="lineView(${i},${r},${j})">${esc(x.a)} \u2192 ${esc(x.z)}</button>`).join("")+"</div>":"")+
  p[2].map((s,j)=>`<button class="stp" style="--c:${c}" onclick="goStop(${i},${s})"><span>${esc(D.S[s][1])}</span><small>${j?"+"+p[3][j]+"\u2032":""}</small></button>`).join("");window.scrollTo(0,0)}
+function trip(j){const{D,v}=cur,x=v[j],p=D.P[x[5]],R=D.R[x[1]],c=col(R),st=x[6];
+ M.innerHTML=`<button class="btn" onclick="draw()">\u2190 ${esc(cur.s[0])}</button><h2><span class="b" style="background:${c};display:inline-block;margin-right:8px">${esc(R[0])}</span>${esc(x[2])}</h2><div class="sub">Partenza ${hm(x[0])} da ${esc(cur.s[0])}${x[4]?" \u00b7 n. "+esc(x[4]):""}</div>`+
+ p[2].map((s,k)=>`<button class="stp ${k<x[7]?"gone":""} ${k===x[7]?"here":""}" style="--c:${c}" onclick="goStop(${cur.s[1]},${s})"><span>${esc(D.S[s][1])}</span><small><b>${hm(st+p[3][k])}</b></small></button>`).join("");window.scrollTo(0,0)}
 function goStop(i,s){const e=IDX.find(x=>x[1]===i&&x[4].includes(s));if(e){setTab(0);open(e)}}
 init();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
